@@ -1,4 +1,4 @@
-package br.cesjf.lppo.servlet;
+package br.cesjf.lppo.servlets;
 
 import br.cesjf.lppo.Contato;
 import br.cesjf.lppo.dao.ContatoDAO;
