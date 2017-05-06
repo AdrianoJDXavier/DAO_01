@@ -12,10 +12,13 @@ public class ContatoDAO {
     private final PreparedStatement opListar;
     private final PreparedStatement opNovo;
     private final PreparedStatement opAtualiza;
+    private final PreparedStatement opBuscaPorId;
+    
 
     public ContatoDAO() throws Exception {
         Connection conexao = ConnectionFactory.createConnection();
         opListar = conexao.prepareStatement("SELECT * FROM contato");
+        opBuscaPorId = conexao.prepareStatement("SELECT * FROM contato WHERE id=?");
         opNovo = conexao.prepareStatement("INSERT INTO contato(nome, sobrenome, telefone) VALUES(?,?,?)");
         opAtualiza = conexao.prepareStatement("UPDATE contato SET nome = ?, sobrenome = ?, telefone=? WHERE id = ?");
         
@@ -41,6 +44,25 @@ public class ContatoDAO {
         }
     }
 
+    public Contato getById(Long id) throws Exception {
+        try {
+            Contato contato = null;
+               opBuscaPorId.clearParameters();
+               opBuscaPorId.setLong(1, id);
+            ResultSet resultado = opBuscaPorId.executeQuery();
+            while (resultado.next()) {
+                contato  = new Contato();
+                contato.setId(resultado.getLong("id"));
+                contato.setNome(resultado.getString("nome"));
+                contato.setSobrenome(resultado.getString("sobrenome"));
+                contato.setTelefone(resultado.getString("telefone"));
+            }
+            return contato;
+        } catch (SQLException ex) {
+            throw new Exception("Erro ao buscar o contato no banco!", ex);
+        }
+    }
+    
     public void cria(Contato novoContato) throws Exception {
         try {
             
@@ -70,5 +92,6 @@ public class ContatoDAO {
         } catch (SQLException ex) {
             throw new Exception("Erro ao inserir novo contato", ex);
         }
+        
 }
 }

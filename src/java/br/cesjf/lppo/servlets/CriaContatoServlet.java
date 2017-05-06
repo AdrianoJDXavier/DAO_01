@@ -22,7 +22,7 @@ public class CriaContatoServlet extends HttpServlet {
         request.getRequestDispatcher("WEB-INF/novo-contato.jsp").forward(request, response);
         
     }
-
+ 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
