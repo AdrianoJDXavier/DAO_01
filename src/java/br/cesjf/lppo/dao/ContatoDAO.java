@@ -18,7 +18,7 @@ public class ContatoDAO {
     public ContatoDAO() throws Exception {
         Connection conexao = ConnectionFactory.createConnection();
         opListar = conexao.prepareStatement("SELECT * FROM contato");
-        opBuscaPorId = conexao.prepareStatement("SELECT * FROM contato WHERE id=?");
+        opBuscaPorId = conexao.prepareStatement("SELECT * FROM contato WHERE id =?");
         opNovo = conexao.prepareStatement("INSERT INTO contato(nome, sobrenome, telefone) VALUES(?,?,?)");
         opAtualiza = conexao.prepareStatement("UPDATE contato SET nome = ?, sobrenome = ?, telefone=? WHERE id = ?");
         
