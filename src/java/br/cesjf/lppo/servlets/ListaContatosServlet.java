@@ -3,7 +3,6 @@ package br.cesjf.lppo.servlets;
 import br.cesjf.lppo.Contato;
 import br.cesjf.lppo.dao.ContatoDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
