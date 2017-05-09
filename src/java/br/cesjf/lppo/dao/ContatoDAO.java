@@ -50,7 +50,7 @@ public class ContatoDAO {
                opBuscaPorId.clearParameters();
                opBuscaPorId.setLong(1, id);
             ResultSet resultado = opBuscaPorId.executeQuery();
-            while (resultado.next()) {
+            if (resultado.next()) {
                 contato  = new Contato();
                 contato.setId(resultado.getLong("id"));
                 contato.setNome(resultado.getString("nome"));
@@ -78,15 +78,15 @@ public class ContatoDAO {
         }
     }
     
-       public void atualiza(Contato Contato) throws Exception {
+       public void atualiza(Contato contato) throws Exception {
         try {
             
             opAtualiza.clearParameters();
-            opAtualiza.setString(1, Contato.getNome());
-            opAtualiza.setString(2, Contato.getSobrenome());
-            opAtualiza.setString(3, Contato.getTelefone());
-            opAtualiza.setLong(4, Contato.getId());
-            opNovo.executeUpdate();
+            opAtualiza.setString(1, contato.getNome());
+            opAtualiza.setString(2, contato.getSobrenome());
+            opAtualiza.setString(3, contato.getTelefone());
+            opAtualiza.setLong(4, contato.getId());
+            opAtualiza.executeUpdate();
 
 
         } catch (SQLException ex) {

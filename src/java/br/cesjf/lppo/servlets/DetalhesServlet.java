@@ -43,7 +43,7 @@ public class DetalhesServlet extends HttpServlet {
             contato.setSobrenome(request.getParameter("sobrenome"));
             contato.setTelefone(request.getParameter("telefone"));
             dao.atualiza(contato);
-            response.sendRedirect("contaots.html");
+            response.sendRedirect("contatos.html");
         } catch (NumberFormatException ex) {
             response.sendRedirect("contatos.html");
         } catch (Exception ex) {
